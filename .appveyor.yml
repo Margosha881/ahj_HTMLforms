@@ -1,0 +1,22 @@
+environment:
+  nodejs_version: "18"
+
+branches:
+  only:
+    - master  # ветка git
+    - main
+
+cache: node_modules  # кеширование
+
+install:
+  - yarn  # команда установки зависимостей
+  - node node_modules/puppeteer/install.mjs
+
+build: off  # отключаем встроенную в appveyor систему сборки
+
+build_script:
+  - yarn build   # команда сборки
+  
+test_script:
+  - yarn lint && yarn test  # скрипт тестирования
+ 
